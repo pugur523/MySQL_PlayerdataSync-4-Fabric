@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "mysql_playerdata_sync",
+  "version": "${version}",
+  "name": "MySQL Playerdata Sync 4 Fabric",
+  "description": "A mod to sync the inventory, enderitems, and selected slot of the player in multiple server",
+  "authors": [],
+  "contact": {
+    "repo": "https://github.com/pugur/MySQLPlayerdataSync4Fabric"
+  },
+  "license": "MIT",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+    ],
+    "main": [
+      "com.pugur.playerdata.MySQLPlayerdataSync"
+    ]
+  },
+  "mixins": [
+    "mysql_playerdata_sync.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": "*",
+    "fabric": "*",
+    "minecraft": "*"
+  }
+}
