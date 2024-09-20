@@ -242,19 +242,6 @@ public class MySQLPlayerdataSync implements ModInitializer {
         enderChestInventory.readNbtList(enderItemsList);
     }
 
-    /*
-    public static NbtList parseFromString(String nbtString) throws CommandSyntaxException {
-        StringReader reader = new StringReader(nbtString);
-        StringNbtReader nbtReader = new StringNbtReader(reader);
-        NbtElement element = nbtReader.parseElement();
-        if (element instanceof NbtList) {
-            return (NbtList) element;
-        }
-        return new NbtList();
-    }
-
-     */
-
     public static NbtList parseFromString(String nbtString) throws CommandSyntaxException {
         StringReader reader = new StringReader(nbtString);
         StringNbtReader nbtReader = new StringNbtReader(reader);
