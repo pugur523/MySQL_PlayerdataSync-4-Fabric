@@ -138,10 +138,8 @@ public class MySQLPlayerdataSync implements ModInitializer {
                                 }
                             } else if (conn_flag) {
                                 logger.info("conn_flag is true");
-
-                                    //if (counter == null) counter = 0;
                                     if (counter < 100) {
-                                        delayTask(() -> loadPlayerDataFromDatabase(player), 25, TimeUnit.MILLISECONDS);
+                                        delayTask(() -> loadPlayerDataFromDatabase(player), 50, TimeUnit.MILLISECONDS);
                                     } else {
                                         if (saving_flag) {
                                             logger.info("saving_flag is true");
@@ -324,13 +322,12 @@ public class MySQLPlayerdataSync implements ModInitializer {
                     "inventory LONGTEXT, " +
                     "enderitems LONGTEXT, " +
                     "selecteditemslot INT, " +
-                    "conn_flag BOOLEAN DEFAULT FALSE, " + //サーバーに参加中の時にtrueになる
-                    "saving_flag BOOLEAN DEFAULT FALSE, " + //サーバーから退出時に、insert queryが完了するまでtrueになる
-                    "rollback_flag BOOLEAN DEFAULT FALSE, " + //discord bot側からrollbackコマンドを実行した際にtrueになる
-                    //todo 複数サーバーの同時ロールバック時にどうするか決めて、pythonのほうを改変しないといけないと思う。すでにこのflagがtrueならrollbackserverの更新をしないなど
-                    "crash_flag BOOLEAN DEFAULT FALSE, " + //これはロードの失敗時にtrueになり、savingを行わないためだけに使用される。loadは関係ない。crushRestoreでfalseになる
-                    "lastserver VARCHAR(256), " + //最後に接続していたサバイバルワールドの名前が記録される
-                    "rollbackserver VARCHAR(256) " + //最後にロールバックされたサーバーが記録される
+                    "conn_flag BOOLEAN DEFAULT FALSE, " + //サーバーに参加中trueになる
+                    "saving_flag BOOLEAN DEFAULT FALSE, " + //save中trueになる
+                    "rollback_flag BOOLEAN DEFAULT FALSE, " +
+                    "crash_flag BOOLEAN DEFAULT FALSE, " +
+                    "lastserver VARCHAR(256), " +
+                    "rollbackserver VARCHAR(256) " +
                     ")";
             try (Statement statement = connection.createStatement()) {
                 statement.executeUpdate(sql);
