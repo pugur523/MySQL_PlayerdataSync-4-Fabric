@@ -56,9 +56,14 @@ public class MySQLPlayerdataSync implements ModInitializer {
             is_enabled = false;
             return;
         }
-
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            logger.error("Fabric Playerdata Sync : " + e.getMessage());
+        }
         createTable();
         getLevelName();
+
         logger.info("server name is : " + SERVER_NAME);
         logger.info("Fabric Playerdata Sync has initialized 🔥");
     }
